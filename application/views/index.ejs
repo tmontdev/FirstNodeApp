@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Welcome to Express, Bitch</title>
     <% if(!isAuthenticated){ %>
-      <title>Welcome to Express, Bitch</title>
+
     <% }else{ %>
       <title>Woah,<%= user.name %> good to see you again</title>
     <% } %>
@@ -15,6 +16,7 @@
         <a href="/login">Log in here!</a>
     <% }else{ %>
         Hello, <%= user.name %>!  <br>
+        <img src="img/ze.png" alt="" class="teste">
         <a href="/logout">Log out here!</a>
     <% } %>
 </body>
