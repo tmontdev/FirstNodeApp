@@ -55,14 +55,26 @@ app.get('/', function(req, res){
   });
 });
 
-app.get('/login', function(req, res){
-  res.render('login');
+app.get('/login', function(req, res) {
+    // res.send();
+    res.render('login', {message: req.flash('error')});
+
+
 });
 
 app.post('/login', passport.authenticate('local', { successRedirect: '/',
 failureRedirect: '/login',
-failureFlash: true }), function(req, res){
-  res.redirect('/');
+failureFlash: true }), function(req, res, next){
+  if (err) {
+    return next(err); // Error 500
+  }
+
+  if (!user) {
+    //Authentication failed
+    return res.json(401, { "error": info.message });
+  }
+  //Authentication successful
+  res.send(200);
 });
 
 app.listen(port, function(){
